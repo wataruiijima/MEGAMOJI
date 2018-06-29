@@ -252,19 +252,14 @@ function effect_zoom (keyframe, ctx, cellWidth, cellHeight) {
 }
 
 function effect_tiritiri (keyframe, ctx, cellWidth, cellHeight) {
-    bgColorRGB = [
-        parseInt(ctx.fillStyle.substring(1, 3), 16),
-        parseInt(ctx.fillStyle.substring(3, 5), 16),
-        parseInt(ctx.fillStyle.substring(5, 7), 16)
-    ]
-    const parentLayerRGBA = getImageDataFourDimension(ctx, cellWidth, cellHeight)
-    secondLayerImageData = restoreUint8ClampedArray(
-        parentLayerRGBA.map(function(element, index, array) {
-            return bgColorRGB.concat(parseInt(255 * Math.random()));
-        })
-    )
-    secondLayer = new ImageData(secondLayerImageData, cellWidth, cellHeight)
-    ctx.putImageData(secondLayer, 0, 0)
+    var image_data = ctx.getImageData(0, 0, cellWidth, cellHeight);
+    var data = image_data.data;
+    for (var row = 0; row < cellHeight; row++) {
+        for (var col = 0; col < cellWidth; col++) {
+            data[(row * cellWidth + col) * 4 + 3] = parseInt(255 * Math.random());
+        }
+    }
+    ctx.putImageData(image_data, 0, 0)
 }
 
 function effect_stripe (keyframe, ctx, cellWidth, cellHeight) {
