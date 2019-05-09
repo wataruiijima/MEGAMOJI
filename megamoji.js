@@ -1,6 +1,6 @@
 var TEXT_CANVAS_SIZE    = 1500; /* a sufficiently large number */
-var EMOJI_SIZE          = 128;
-var ANIMATED_EMOJI_SIZE = 128;
+var EMOJI_SIZE          = 256;
+var ANIMATED_EMOJI_SIZE = 256;
 var ANIMATION_FRAMES    = 12;
 
 /* ---- Core */
